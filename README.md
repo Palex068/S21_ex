@@ -219,8 +219,67 @@ int main() {
 [Содержание](#содержание)
 
 
+## Матрицы
 
+### 6.1 Умножение квадратных матриц
 
+Написать программу, производящую умножение двух квадратных матриц $A$ и $B$ размера $N$.
+
+Input | Output
+---|---
+2<br/>1 2<br/>3 4<br/>5 6<br/>7 8 | 19 22<br/>43 50
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N;
+    char term;
+
+    if (scanf("%d%c", &N, &term) != 2 || term != '\n') {
+        printf("n/a");
+        return 1;
+    }
+
+    int A[N][N];
+    int B[N][N];
+    int C[N][N];
+
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++) {
+            if (scanf("%d", &A[i][j]) != 1) {
+                printf("n/a");
+                return 1;
+            }
+        }
+
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++) {
+            if (scanf("%d", &B[i][j]) != 1) {
+                printf("n/a");
+                return 1;
+            }
+        }
+
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++) {
+            C[i][j] = 0;
+            for (int k = 0; k < N; k++) C[i][j] += A[i][k] * B[k][j];
+        }
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (j < N - 1) {
+                printf("%d ", C[i][j]);
+            } else {
+                printf("%d", C[i][j]);
+                printf("\n");
+            }
+        }
+    }
+}
+```
 
 [Содержание](#содержание)
 
