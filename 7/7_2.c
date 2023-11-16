@@ -6,28 +6,25 @@ This is mytext
 my
 Вывод должен был быть
 This is text
-пока нет
+ВНИМАНИЕ КОД ОТРАБАТЫВАЕТ ПЕРВОЕ ВХОЖДЕНИЕ!!!
 */
 
 #include <stdio.h>
 #include <string.h>
-    int
-    main() {
+int main() {
     char str1[100];
     char str2[100];
 
-    char new[100];
     fgets(str1, 100, stdin);
-    int j = 0;
-    for (int i = 0; i < (int)strlen(string); i++) {
-        if (string[i] == ' ') {
-            if (string[i + 1] == ' ' || j == 0 || string[i + 1] == '\0') {
-                continue;
-            }
-        }
-        new[j] = string[i];
-        j++;
+    str1[strcspn(str1, "\n")] = 0;
+    fgets(str2, 100, stdin);
+    str2[strcspn(str2, "\n")] = 0;
+
+    char *pos = strstr(str1, str2);
+    if (pos != NULL) {
+        memmove(pos, pos + strlen(str2), strlen(pos + strlen(str2)) + 1);
     }
-    new[j - 1] = '\0';
-    printf("%s", new);
+
+    printf("%s", str1);
+    return 0;
 }
